@@ -52,7 +52,7 @@ void moveCursor(int x, int y) {
 }
 
 void displayBoard() {
-    system("cls");
+    system("clear");
     moveCursor(0, 0);
     ostringstream output;
 
