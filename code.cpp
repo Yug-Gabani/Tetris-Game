@@ -11,7 +11,6 @@ const int HEIGHT = 20;
 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 COORD cursorPos = {0, 0};
 
-// Tetromino class with rotation states
 struct Tetromino {
     vector<vector<vector<int>>> rotations;
     string emoji;
@@ -28,7 +27,6 @@ struct Tetromino {
     }
 };
 
-// Tetromino Definitions
 vector<Tetromino> tetrominoes = {
     {{{{1}, {1}, {1}, {1}}, {{1, 1, 1, 1}}}, "🟦"},
     {{{{1, 1}, {1, 1}}}, "🟨"},
