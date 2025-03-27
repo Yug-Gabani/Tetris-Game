@@ -1,8 +1,6 @@
-# Tetris-Game
+<h1>🎮 Tetris-Game</h1>
 
 ![Image](https://github.com/user-attachments/assets/ce1e8453-0244-4efd-b827-b7f2db901877)
-
-<h1>🔴Introduction</h1>
 
 <h2>🤝Made by Digital Dreamers</h2>
 
@@ -15,7 +13,7 @@
 <br>↳Detects collisions and line completions.
 <br>↳Increases difficulty as the game progresses.
 <br>↳Displays the current score and game-over conditions.
-
+ 
 ## Tetromino Shapes & Emojis
 | Tetromino | Correct Shape | Emoji |
 |-----------|--------------|-----------|
@@ -29,7 +27,6 @@
 
 <h2>⭕️Tetromino_Shapes</h2>
 <br>Below are the standard Tetromino shapes used in the game:
-
 <br>↳I-Shape: Four blocks in a straight line.
 <br>↳O-Shape: Square shape.
 <br>↳T-Shape: Three blocks in a row with one in the center.
@@ -77,9 +74,9 @@
    ```bash
    ./code.exe
    ```
-
-Run the game:<br>
-tetris.exe<br>
+   
+## 🌉Output
+![Image](https://github.com/user-attachments/assets/29852fa1-c89a-44cd-856b-6d71847c06c0)
 
 <h2>📝Notes</h2>
 <br>↳The game runs in a console window and uses Unicode characters for better visuals.
