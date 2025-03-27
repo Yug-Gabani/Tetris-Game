@@ -2,8 +2,7 @@
 
 <h1>➡️Introduction</h1>
 
-![Alt Text]([image_path](https://raw.githubusercontent.com/vitaviva/compose-tetris/main/app/src/main/res/drawable/ic_launcher.png))
-
+![Image](https://github.com/user-attachments/assets/bb6c5ac9-5bc2-4707-83d5-fc2cbc977e06)
 <br>This project is a console-based Tetris game implemented in C++. It features Tetrominoes, movement controls, rotation, scoring, and increasing difficulty as the player progresses.
 
 <h2>Features</h2>
