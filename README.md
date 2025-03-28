@@ -76,7 +76,7 @@
    ```
    
 ## 🌉Output
-![Image](https://github.com/user-attachments/assets/29852fa1-c89a-44cd-856b-6d71847c06c0)
+![Image](https://github.com/user-attachments/assets/e247a3a0-6505-4940-a08c-4a265b5a4395)
 
 <h2>📝Notes</h2>
 <br>↳The game runs in a console window and uses Unicode characters for better visuals.
