@@ -155,6 +155,7 @@ void spawnPiece() {
         cout << "Game Over! Final Score: " << score << "\n";
         cout << "Maximum Score: " << maxx << "\n";
         cout << "Press ENTER to play again or ESC to exit...";
+        Beep(1000, 800);
         while (true) {
             if (_kbhit()) {
                 char key = _getch();
@@ -189,6 +190,7 @@ void handleInput() {
         if (key == 32) 
             while (isValidMove(currentPiece, pieceX, newY + 1)) newY++;
         if (key == 27) { 
+            Beep(1000, 800);
             exit(0);
         }
         pieceX = newX;
