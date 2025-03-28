@@ -14,7 +14,7 @@
 <br>↳Increases difficulty as the game progresses.
 <br>↳Displays the current score and game-over conditions.
  
-## Tetromino Shapes & Emojis
+## 📛Tetromino Shapes & Emojis
 | Tetromino | Correct Shape | Emoji |
 |-----------|--------------|-----------|
 | I | 🟦<br>🟦<br>🟦<br>🟦 | 🟦 (Blue Square) |
