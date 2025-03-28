@@ -7,7 +7,7 @@ using namespace std;
 int dropSpeed = 700;
 const int WIDTH = 15;
 const int HEIGHT = 20;
-
+//
 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 COORD cursorPos = {0, 0};
 
