@@ -89,7 +89,7 @@ void placePiece() {
     vector<vector<int>> shape = currentPiece.getShape();
     for (int i = 0; i < shape.size(); i++) {
         for (int j = 0; j < shape[i].size(); j++) {
-            if (shape[i][j] == 1) {   
+            if (shape[i][j] == 1) {   // we made tetrimino like that if 1 then colouring box present and if 0 then absent.
                 board[pieceY + i][pieceX + j] = currentPiece.emoji;
             }
         }
@@ -98,7 +98,7 @@ void placePiece() {
 
 void clearLines() {
     for (int i = HEIGHT - 1; i >= 0; i--) {
-        if (count(board[i].begin(), board[i].end(), "⬜") == 0) {
+        if (count(board[i].begin(), board[i].end(), "⬜") == 0) {  // count white box if zero then erase last row.
             board.erase(board.begin() + i);
             board.insert(board.begin(), vector<string>(WIDTH, "⬜"));
             score += 100;
