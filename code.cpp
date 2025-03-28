@@ -98,7 +98,7 @@ void placePiece() {
 
 void clearLines() {
     for (int i = HEIGHT - 1; i >= 0; i--) {
-        if (count(board[i].begin(), board[i].end(), "⬜") == 0) {  // count white box if zero then erase last row.
+        if (count(board[i].begin(), board[i].end(), "⬜") == 0) {  // count white box if zero then erase last row. and insert a row at top.
             board.erase(board.begin() + i);
             board.insert(board.begin(), vector<string>(WIDTH, "⬜"));
             score += 100;
@@ -108,7 +108,7 @@ void clearLines() {
 }
 
 void spawnPiece() {
-    currentPiece = tetrominoes[rand() % 7];
+    currentPiece = tetrominoes[rand() % 7];  // tetrimino generator
     pieceX = WIDTH / 2 - 1;
     pieceY = 0;
     if (!isValidMove(currentPiece, pieceX, pieceY)) {
@@ -121,13 +121,13 @@ void spawnPiece() {
             if (_kbhit()) {
                 char key = _getch();
                 if (key == 13) {
-                    score = 0;
+                    score = 0;  // enter
                     board.assign(HEIGHT, vector<string>(WIDTH, "⬜"));
                     spawnPiece();
                     return;
                 }
                 if (key == 27) {
-                    exit(0);
+                    exit(0);   // escape
                 }
             }
         }
@@ -140,14 +140,14 @@ void handleInput() {
         int newX = pieceX, newY = pieceY;
         Tetromino newPiece = currentPiece;
 
-        if (key == 75 && isValidMove(currentPiece, pieceX - 1, pieceY)) newX--;
-        if (key == 77 && isValidMove(currentPiece, pieceX + 1, pieceY)) newX++;
-        if (key == 80 && isValidMove(currentPiece, pieceX, pieceY + 1)) newY++;
-        if (key == 72) {
+        if (key == 75 && isValidMove(currentPiece, pieceX - 1, pieceY)) newX--;  //<--
+        if (key == 77 && isValidMove(currentPiece, pieceX + 1, pieceY)) newX++;  //-->
+        if (key == 80 && isValidMove(currentPiece, pieceX, pieceY + 1)) newY++;  // down
+        if (key == 72) {       
             newPiece.rotate();
-            if (isValidMove(newPiece, pieceX, pieceY)) currentPiece = newPiece;
+            if (isValidMove(newPiece, pieceX, pieceY)) currentPiece = newPiece; // rotate
         }
-        if (key == 32) while (isValidMove(currentPiece, pieceX, newY + 1)) newY++;
+        if (key == 32) while (isValidMove(currentPiece, pieceX, newY + 1)) newY++;   // spacebar
 
         pieceX = newX;
         pieceY = newY;
