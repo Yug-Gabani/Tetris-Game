@@ -1,6 +1,6 @@
-#include <bits/stdc++.h> // of c++
-#include <conio.h>       // input
-#include <windows.h>     // for windows specific functions
+#include <bits/stdc++.h> 
+#include <conio.h>       
+#include <windows.h>     
 
 using namespace std;
 
@@ -11,39 +11,39 @@ const int HEIGHT = 20;
 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 COORD cursorPos = {0, 0};
 
-// Tetromino class with rotation states
+
 struct Tetromino {
-    vector<vector<vector<int>>> rotations; // all possible rotation states
-    string emoji; // emoji to represent the tetromino
-    int rotationState; // current rotation state
+    vector<vector<vector<int>>> rotations; 
+    string emoji; 
+    int rotationState; 
 
     Tetromino(vector<vector<vector<int>>> r, string e) : rotations(r), emoji(e), rotationState(0) {}
 
     void rotate() {
-        rotationState = (rotationState + 1) % rotations.size(); // cycle through rotations
+        rotationState = (rotationState + 1) % rotations.size(); 
     }
 
     vector<vector<int>> getShape() {
-        return rotations[rotationState]; // return the shape for the current rotation state
+        return rotations[rotationState];
     }
 };
 
 // Tetromino Definitions
 vector<Tetromino> shape = {
-    {{{{1}, {1}, {1}, {1}}, {{1, 1, 1, 1}}}, "🟦"}, // I piece
-    {{{{1, 1}, {1, 1}}}, "🟨"},                     // Square piece
+    {{{{1}, {1}, {1}, {1}}, {{1, 1, 1, 1}}}, "🟦"}, 
+    {{{{1, 1}, {1, 1}}}, "🟨"},                     
     {{{{1, 1, 1}, {0, 1, 0}}, 
       {{0, 1}, {1, 1}, {0, 1}}, 
       {{0, 1, 0}, {1, 1, 1}}, 
-      {{1, 0}, {1, 1}, {1, 0}}}, "🟪"},             // T piece
+      {{1, 0}, {1, 1}, {1, 0}}}, "🟪"},             
     {{{{0, 1, 1}, {1, 1, 0}}, 
-      {{1, 0}, {1, 1}, {0, 1}}}, "🟩"},             // S piece
+      {{1, 0}, {1, 1}, {0, 1}}}, "🟩"},             
     {{{{1, 1, 0}, {0, 1, 1}}, 
-      {{0, 1}, {1, 1}, {1, 0}}}, "🟥"},             // Z piece
+      {{0, 1}, {1, 1}, {1, 0}}}, "🟥"},             
     {{{{0, 1}, {0, 1}, {1, 1}}, 
       {{1, 0, 0}, {1, 1, 1}}, 
       {{1, 1}, {1, 0}, {1, 0}}, 
-      {{1, 1, 1}, {0, 0, 1}}}, "🟫"},               // _| piece
+      {{1, 1, 1}, {0, 0, 1}}}, "🟫"},               
     {{{{1, 0}, {1, 0}, {1, 1}}, 
       {{1, 1, 1}, {1, 0, 0}}, 
       {{1, 1}, {0, 1}, {0, 1}}, 
@@ -51,8 +51,8 @@ vector<Tetromino> shape = {
 };
 
 vector<vector<string>> board(HEIGHT, vector<string>(WIDTH, "⬜"));
-Tetromino currentPiece = shape[0]; // current tetromino (will be set in spawnPiece)
-Tetromino nextPiece = shape[0];    // next tetromino (initialized to a dummy value)
+Tetromino currentPiece = shape[0]; 
+Tetromino nextPiece = shape[0];    
 int pieceX = WIDTH / 2 - 1;
 int pieceY = 0;
 int score = 0;
@@ -69,7 +69,7 @@ void displayBoard() {
     
     ostringstream output;
     
-    // Display the next shape.
+    
     output << "Next Piece:\n";
     vector<vector<int>> nextShape = nextPiece.getShape();
     for (int i = 0; i < nextShape.size(); i++) {
@@ -77,13 +77,13 @@ void displayBoard() {
             if (nextShape[i][j] == 1)
                 output << nextPiece.emoji;
             else
-                output << "  "; // two spaces for alignment
+                output << "  "; 
         }
         output << "\n";
     }
     output << "\n";
     
-    // Draw the board with the current piece overlay.
+   
     for (int i = 0; i < HEIGHT; i++) {
         for (int j = 0; j < WIDTH; j++) {
             if (board[i][j] == "⬜" &&
@@ -98,7 +98,6 @@ void displayBoard() {
         output << "\n";
     }
     
-    // Display score
     output << "Score: " << score << "\n";
     
     cout << output.str();
@@ -142,12 +141,12 @@ void clearLines() {
 }
 
 void spawnPiece() {
-    // Use the pre-generated nextPiece as the current piece.
+   
     currentPiece = nextPiece;
     pieceX = WIDTH / 2 - 1;
     pieceY = 0;
     
-    // Generate the next tetromino randomly.
+    
     nextPiece = shape[rand() % shape.size()];
     
     if (!isValidMove(currentPiece, pieceX, pieceY)) {
@@ -179,17 +178,17 @@ void handleInput() {
         int newX = pieceX, newY = pieceY;
         Tetromino newPiece = currentPiece;
 
-        if (key == 75 && isValidMove(currentPiece, pieceX - 1, pieceY)) newX--; // left arrow
-        if (key == 77 && isValidMove(currentPiece, pieceX + 1, pieceY)) newX++; // right arrow
-        if (key == 80 && isValidMove(currentPiece, pieceX, pieceY + 1)) newY++; // down arrow
-        if (key == 72) { // up arrow: rotate
+        if (key == 75 && isValidMove(currentPiece, pieceX - 1, pieceY)) newX--; 
+        if (key == 77 && isValidMove(currentPiece, pieceX + 1, pieceY)) newX++; 
+        if (key == 80 && isValidMove(currentPiece, pieceX, pieceY + 1)) newY++; 
+        if (key == 72) { 
             newPiece.rotate();
             if (isValidMove(newPiece, pieceX, pieceY))
                 currentPiece = newPiece;
         }
-        if (key == 32) // space bar: drop piece to bottom
+        if (key == 32) 
             while (isValidMove(currentPiece, pieceX, newY + 1)) newY++;
-        if (key == 27) { // escape key to exit
+        if (key == 27) { 
             exit(0);
         }
         pieceX = newX;
@@ -215,8 +214,7 @@ void gameLoop() {
 int main() {
     srand(time(0));
     SetConsoleOutputCP(CP_UTF8);
-    
-    // Initialize nextPiece before starting the game.
+
     nextPiece = shape[rand() % shape.size()];
     
     spawnPiece();
