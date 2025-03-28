@@ -56,11 +56,11 @@ void displayBoard() {
 
     for (int i = 0; i < HEIGHT; i++) {
         for (int j = 0; j < WIDTH; j++) {
-            if (board[i][j] == "⬜" && pieceY <= i && i < pieceY + currentPiece.getShape().size() &&
+            if (board[i][j] == "⬜" && pieceY <= i && i < pieceY + currentPiece.getShape().size() && // this is for print a tetrimino which is running now.
                 pieceX <= j && j < pieceX + currentPiece.getShape()[0].size() &&
                 currentPiece.getShape()[i - pieceY][j - pieceX] == 1) {
                 output << currentPiece.emoji;
-            } else {
+            } else {    // this condition for old page which is print direct.
                 output << board[i][j];
             }
         }
@@ -76,7 +76,7 @@ bool isValidMove(Tetromino &piece, int x, int y) {
         for (int j = 0; j < shape[i].size(); j++) {
             if (shape[i][j] == 1) {
                 int newX = x + j, newY = y + i;
-                if (newX < 0 || newX >= WIDTH || newY >= HEIGHT || board[newY][newX] != "⬜") {
+                if (newX < 0 || newX >= WIDTH || newY >= HEIGHT || board[newY][newX] != "⬜") {  // if tetrimino going outside the displayboard then stop it. otherwise apply above condition.
                     return false;
                 }
             }
@@ -89,7 +89,7 @@ void placePiece() {
     vector<vector<int>> shape = currentPiece.getShape();
     for (int i = 0; i < shape.size(); i++) {
         for (int j = 0; j < shape[i].size(); j++) {
-            if (shape[i][j] == 1) {
+            if (shape[i][j] == 1) {   
                 board[pieceY + i][pieceX + j] = currentPiece.emoji;
             }
         }
