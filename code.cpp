@@ -4,17 +4,17 @@
 
 using namespace std;
 
-int dropSpeed = 700;
+int dropSpeed = 700;//Controls the speed at which the tetromino falls (milliseconds per step).
 const int WIDTH = 15;
 const int HEIGHT = 20;
 
-HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-COORD cursorPos = {0, 0};
+HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);//Gets a handle to the console output for manipulating the screen.
+COORD cursorPos = {0, 0};//Stores the cursor position for updating the console screen efficiently.
 
 struct Tetromino {
-    vector<vector<vector<int>>> rotations;
-    string emoji;
-    int rotationState;
+    vector<vector<vector<int>>> rotations;//A list of all possible rotations of the piece.
+    string emoji;//The Unicode character used to represent this piece.
+    int rotationState;//Tracks the current rotation state (index in the rotations vector).
 
     Tetromino(vector<vector<vector<int>>> r, string e) : rotations(r), emoji(e), rotationState(0) {}
 
@@ -35,7 +35,7 @@ vector<Tetromino> tetrominoes = {
     {{{{1, 1, 0}, {0, 1, 1}}, {{0, 1}, {1, 1}, {1, 0}}}, "🟥"},
     {{{{0, 1}, {0, 1}, {1, 1}}, {{1, 0, 0}, {1, 1, 1}}, {{1, 1}, {1, 0}, {1, 0}}, {{1, 1, 1}, {0, 0, 1}}}, "🟫"},
     {{{{1, 0}, {1, 0}, {1, 1}}, {{1, 1, 1}, {1, 0, 0}}, {{1, 1}, {0, 1}, {0, 1}}, {{0, 0, 1}, {1, 1, 1}}}, "🟧"}
-};
+};//This initializes all 7 Tetromino types with their possible rotations and assigns a Unicode block to each.
 
 vector<vector<string>> board(HEIGHT, vector<string>(WIDTH, "⬜"));
 Tetromino currentPiece = tetrominoes[0];
